@@ -24,16 +24,6 @@ public partial class App : Application
         {
             System.Diagnostics.Debug.WriteLine( $"发生未处理异常: {e}" );
         };
-
-        TaskScheduler.UnobservedTaskException += ( s, e ) =>
-        {
-            e.SetObserved( );   // 防止异常终止程序
-
-            foreach ( var ex in e.Exception.InnerExceptions )
-            {
-                System.Diagnostics.Debug.WriteLine( $"发生未处理的Task异常: {e}" );
-            }
-        };
     }
 
     public override void OnFrameworkInitializationCompleted( )
